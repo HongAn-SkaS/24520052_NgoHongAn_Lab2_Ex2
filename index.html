@@ -1,0 +1,49 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A reactive task manager built with a custom useState engine.">
+  <title>Reactive Task Manager</title>
+  <link rel="stylesheet" href="./style.css">
+  <script src="./state.js" defer></script>
+  <script src="./events.js" defer></script>
+  <script src="./main.js" defer></script>
+</head>
+<body>
+  <main>
+    <section class="task-manager" aria-labelledby="page-title">
+      <h1 id="page-title">Task Manager</h1>
+      <p>Organize your tasks and track your progress.</p>
+
+      <form id="task-form">
+        <label for="task-input">New task</label>
+        <input
+          id="task-input"
+          name="task"
+          type="text"
+          maxlength="200"
+          placeholder="Enter a task..."
+          required
+        >
+        <button type="submit">Add task</button>
+      </form>
+
+      <section aria-labelledby="filter-title">
+        <h2 id="filter-title">Filter tasks</h2>
+        <nav class="filters" aria-label="Task filters">
+          <button type="button" data-action="filter" data-filter="all" aria-pressed="true">All</button>
+          <button type="button" data-action="filter" data-filter="active" aria-pressed="false">Active</button>
+          <button type="button" data-action="filter" data-filter="completed" aria-pressed="false">Completed</button>
+        </nav>
+      </section>
+
+      <p id="task-count" aria-live="polite">0 tasks</p>
+      <ul id="task-list" aria-label="Tasks"></ul>
+      <p id="empty-message">No tasks yet. Add one above.</p>
+    </section>
+  </main>
+</body>
+</html>
+```

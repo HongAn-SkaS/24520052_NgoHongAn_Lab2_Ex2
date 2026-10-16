@@ -19,21 +19,22 @@ function setRerender(callback) {
 function useState(initialValue) {
   const currentCursor = stateCursor;
 
-  if (stateStore[currentCursor] === undefined) {
+  if (!(currentCursor in stateStore)) {
     stateStore[currentCursor] = initialValue;
   }
 
   function setState(newValue) {
-    if (typeof newValue === "function") {
-      stateStore[currentCursor] = newValue(stateStore[currentCursor]);
-    } else {
-      stateStore[currentCursor] = newValue;
-    }
+    const previousValue = stateStore[currentCursor];
+
+    stateStore[currentCursor] =
+      typeof newValue === "function"
+        ? newValue(previousValue)
+        : newValue;
 
     rerender();
   }
 
   stateCursor++;
 
-  return [stateStore[currentCursor - 1], setState];
+  return [stateStore[currentCursor], setState];
 }
